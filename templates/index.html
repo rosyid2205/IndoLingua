@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Analisis Struktur Kalimat</title>
+</head>
+<body>
+    <h2>Analisis Struktur Kalimat Bahasa Indonesia</h2>
+
+    <form action="/analyze" method="post">
+        <textarea name="sentence" rows="3" cols="50"
+                  placeholder="Masukkan kalimat bahasa Indonesia"></textarea>
+        <br><br>
+        <button type="submit">Analisis</button>
+    </form>
+
+    {% if result %}
+    <hr>
+
+    <p><b>Kalimat:</b></p>
+
+    <p style="font-size:18px;">
+    {% for word, flag in result.token_marks %}
+        {% if flag == "error" %}
+            <span style="color:red; font-weight:bold;">{{ word }}</span>
+        {% else %}
+            {{ word }}
+        {% endif %}
+    {% endfor %}
+    </p>
+
+    <p><b>Struktur:</b> {{ result.structure }}</p>
+    <p><b>Skor:</b> {{ result.score }}</p>
+    <p><b>Status:</b> {{ result.status }}</p>
+
+    <p><b>Feedback:</b><br>{{ result.feedback }}</p>
+    {% endif %}
+
+</body>
+</html>
