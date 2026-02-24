@@ -3,6 +3,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from core.sentence_analyzer import analyze
+import stanza
+
+stanza.download("id")
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
